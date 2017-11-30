@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Khaadya" package="com.saumya.khaadya" version="1.0.0" company="RayInc" />
+	<app main="com.saumya.khaadya.Main" path="Export" file="Khaadya" />
+
+	<window width="320" height="520" if="desktop" />
+	<window width="0" height="0" if="html5" />
+	
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	
+	<assets path="Assets" rename="assets" />
+	
+</project>
