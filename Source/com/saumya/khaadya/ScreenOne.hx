@@ -10,6 +10,8 @@ import com.saumya.khaadya.Utils;
 
 
 class ScreenOne extends Sprite {
+
+	public static var TO_SCREEN_2_EVENT:String = "toScreen2Event";
 	
 	private var screenWidth:Float;
 	private var screenHeight:Float;
@@ -47,6 +49,8 @@ class ScreenOne extends Sprite {
 	}
 	private function onMoveNext(e:MouseEvent):Void{
 		trace('onMoveNext');
+		var evt:Event = new Event(ScreenOne.TO_SCREEN_2_EVENT);
+		this.dispatchEvent(evt);
 	}
 
 

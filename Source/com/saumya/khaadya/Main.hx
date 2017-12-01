@@ -16,6 +16,9 @@ import com.saumya.khaadya.ScreenUserAction;
 
 
 class Main extends Sprite {
+
+	private var screen1:ScreenOne;
+	private var screen2:ScreenUserAction;
 	
 	
 	public function new () {
@@ -45,9 +48,12 @@ class Main extends Sprite {
 	}
 	private function construct():Void{
 		trace('Main: construct : ');
-		//var screen:ScreenOne = new ScreenOne(stage.stageWidth, stage.stageHeight);
-		var screen:ScreenUserAction = new ScreenUserAction(stage.stageWidth, stage.stageHeight);
-		addChild(screen);
+		screen1 = new ScreenOne(stage.stageWidth, stage.stageHeight);
+		screen2 = new ScreenUserAction(stage.stageWidth, stage.stageHeight);
+		//
+		screen1.addEventListener(ScreenOne.TO_SCREEN_2_EVENT,onToScreenTwo);
+		//
+		addChild(screen1);
 	}
 
 	private function resize(newWidth:Int, newHeight:Int):Void{
@@ -61,6 +67,13 @@ class Main extends Sprite {
 	private function onAddedToStage(e:Event):Void{
 		trace('Main: onAddedToStage : ');
 		initialize ();
+	}
+	//
+	private function onToScreenTwo(event:Event):Void{
+		trace('Main : onToScreenTwo : ');
+		removeChild(screen1);
+		addChild(screen2);
+
 	}
 	
 	
