@@ -9,6 +9,8 @@ import openfl.system.Capabilities;
 import openfl.Assets;
 import openfl.Lib;
 
+import lime.app.Future;
+
 
 class Main extends Sprite {
 	
@@ -25,8 +27,18 @@ class Main extends Sprite {
 		
 	}
 
-	private function initialize():Void{}
-	private function construct():Void{}
+	private function initialize():Void{
+		//Loading SWF
+		//Assets.loadLibrary("id_khaadya_1");
+		var future = Assets.loadLibrary("id_khaadya_1");
+		future.onComplete(function(_){ trace('Loaded! : SWF'); this.construct(); });
+		future.onError(function(_){ trace('Error: Loading Asset : SWF'); });
+		//future.onProgress(function(_){ trace('Progress: Loading Asset : SWF'); });
+		
+	}
+	private function construct():Void{
+		trace('construct');
+	}
 
 	private function resize(newWidth:Int, newHeight:Int):Void{}
 	private function stage_onResize(event:Event):Void{

@@ -4,7 +4,7 @@
 	<meta title="Khaadya" package="com.saumya.khaadya" version="1.0.0" company="RayInc" />
 	<app main="com.saumya.khaadya.Main" path="Export" file="Khaadya" />
 
-	<window width="320" height="520" if="desktop" />
+	<window width="320" height="560" if="desktop" />
 	<window width="0" height="0" if="html5" />
 	
 	<source path="Source" />
@@ -12,5 +12,8 @@
 	<haxelib name="openfl" />
 	
 	<assets path="Assets" rename="assets" />
+
+	<!-- SWF ! So Flash is dead :) Yeah, deadman walking. -->
+	<library path="Assets/swf/khaadya_1.swf" id="id_khaadya_1" preload="true" generate="true" />
 	
 </project>
