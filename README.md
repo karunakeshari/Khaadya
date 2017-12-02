@@ -19,6 +19,11 @@ Load the `SWF` programmatically as
 	future.onError(function(_){ trace('Main : Error: Loading Asset : SWF'); });
 ```
 
+#### TODO
+
+ - Make sure about the turn
+ - Multi-player
+ - Leaderboard
 
 
 
