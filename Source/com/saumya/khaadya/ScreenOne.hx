@@ -53,5 +53,10 @@ class ScreenOne extends Sprite {
 		this.dispatchEvent(evt);
 	}
 
+	//TODO: Get the weather Data
+	private function getWeather():Void{
+		//
+	}
+
 
 }
