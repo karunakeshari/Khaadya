@@ -15,13 +15,21 @@ import openfl.events.Event;
 import openfl.events.ErrorEvent;
 import openfl.errors.IOError;
 import openfl.events.IOErrorEvent;
+import openfl.events.EventDispatcher;
 
 //import haxe.format.JsonParser;
 import haxe.Json;
 
+import com.saumya.configs.APIConfigs;
+
 
 
 class Utils {
+	
+	public static var WEATHER_DATA_EVENT:String = "gotWeatherDataEvent";
+	public static var weatherData:Dynamic = {};
+	public static var eDispatcher:EventDispatcher = new EventDispatcher();
+
 	public function new() {
 		// Nothing
 	}
@@ -41,9 +49,9 @@ class Utils {
 
 	public static function getWeather():Void{
 		trace('Utils : getWeather : ');
-		var urlWeather:String = "http://api.openweathermap.org/data/2.5/weather";
+		var urlWeather:String = APIConfigs.WEATHER_API_URI;
 		var uVar:URLVariables = new URLVariables();
-		uVar.appid = 'myAPI';
+		uVar.appid = APIConfigs.WEATHER_APP_ID;
 		uVar.q = 'Bhubaneshwar';
 		uVar.units = 'metric';
 		
@@ -71,6 +79,9 @@ class Utils {
 		trace(rJson);
 		trace('============');
 		trace('Temparature='+rJson.main.temp);
+		Utils.weatherData = rJson;
+		var evt:Event = new Event(Utils.WEATHER_DATA_EVENT,false);
+		Utils.eDispatcher.dispatchEvent(evt);
 	}
 	private static function onErrorWeather(e:ErrorEvent):Void{
 		trace('Utils : onErrorWeather :');

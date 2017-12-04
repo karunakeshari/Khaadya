@@ -31,6 +31,7 @@ class ScreenOne extends Sprite {
 		construct();
 	}
 	private function construct():Void{
+		Utils.eDispatcher.addEventListener(Utils.WEATHER_DATA_EVENT,onGotWeatherData);
 		makeFromSWF();
 	}
 	private function makeFromSWF():Void{
@@ -58,7 +59,18 @@ class ScreenOne extends Sprite {
 
 	//TODO: Get the weather Data
 	private function getWeather():Void{
+
 		Utils.getWeather();
+	}
+
+	private function onGotWeatherData(e:Event):Void
+	{
+		trace('ScreenOne : onGotWeatherData : ');
+		var weatherData = Utils.weatherData;
+		var temp = Utils.weatherData.main.temp;
+		var temp_min = Utils.weatherData.main.temp_min;
+		var temp_max = Utils.weatherData.main.temp_max;
+		trace(temp_min+' : '+temp+' : '+temp_max);
 	}
 
 
