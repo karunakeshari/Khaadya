@@ -67,9 +67,15 @@ class ScreenOne extends Sprite {
 	{
 		trace('ScreenOne : onGotWeatherData : ');
 		var weatherData = Utils.weatherData;
+		//
 		var temp = Utils.weatherData.main.temp;
 		var temp_min = Utils.weatherData.main.temp_min;
 		var temp_max = Utils.weatherData.main.temp_max;
+		//
+		//var time_sunrise = Utils.weatherData.sys.sunrise * 1000;
+		//var time_sunset = Utils.weatherData.sys.sunset * 1000;
+
+
 		trace(temp_min+' : '+temp+' : '+temp_max);
 	}
 

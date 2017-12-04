@@ -70,15 +70,13 @@ class Utils {
 	}
 	private static function onCompleteWeather(e:Event):Void{
 		trace('Utils : onCompleteWeather : ');
-		//trace(e.target);
+		
 		var uLoader:URLLoader = cast(e.target,URLLoader);
 		var result = uLoader.data;
-		//trace(result);
-		//trace(result.main.temp);
 		var rJson = Json.parse(result);
-		trace(rJson);
-		trace('============');
-		trace('Temparature='+rJson.main.temp);
+		//trace(rJson);
+		//trace('============');
+		//trace('Temparature='+rJson.main.temp);
 		Utils.weatherData = rJson;
 		var evt:Event = new Event(Utils.WEATHER_DATA_EVENT,false);
 		Utils.eDispatcher.dispatchEvent(evt);
