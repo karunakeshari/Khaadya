@@ -49,13 +49,16 @@ class ScreenOne extends Sprite {
 	}
 	private function onMoveNext(e:MouseEvent):Void{
 		trace('onMoveNext');
+		/*
 		var evt:Event = new Event(ScreenOne.TO_SCREEN_2_EVENT);
 		this.dispatchEvent(evt);
+		*/
+		getWeather();
 	}
 
 	//TODO: Get the weather Data
 	private function getWeather():Void{
-		//
+		Utils.getWeather();
 	}
 
 
