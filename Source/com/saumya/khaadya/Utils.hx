@@ -16,6 +16,9 @@ import openfl.events.ErrorEvent;
 import openfl.errors.IOError;
 import openfl.events.IOErrorEvent;
 
+//import haxe.format.JsonParser;
+import haxe.Json;
+
 
 
 class Utils {
@@ -40,7 +43,7 @@ class Utils {
 		trace('Utils : getWeather : ');
 		var urlWeather:String = "http://api.openweathermap.org/data/2.5/weather";
 		var uVar:URLVariables = new URLVariables();
-		uVar.appid = 'myAppid';
+		uVar.appid = 'myAPI';
 		uVar.q = 'Bhubaneshwar';
 		uVar.units = 'metric';
 		
@@ -49,7 +52,7 @@ class Utils {
 		uRequest.data = uVar;
 		
 		var uLoader:URLLoader = new URLLoader();
-		//urlLoader.dataFormat = URLLoaderDataFormat.VARIABLES;
+		uLoader.dataFormat = URLLoaderDataFormat.VARIABLES;
 
 		uLoader.addEventListener(Event.COMPLETE, Utils.onCompleteWeather);
 		uLoader.addEventListener(ErrorEvent.ERROR, Utils.onErrorWeather);
@@ -61,7 +64,13 @@ class Utils {
 		trace('Utils : onCompleteWeather : ');
 		//trace(e.target);
 		var uLoader:URLLoader = cast(e.target,URLLoader);
-		trace(uLoader.data);
+		var result = uLoader.data;
+		//trace(result);
+		//trace(result.main.temp);
+		var rJson = Json.parse(result);
+		trace(rJson);
+		trace('============');
+		trace('Temparature='+rJson.main.temp);
 	}
 	private static function onErrorWeather(e:ErrorEvent):Void{
 		trace('Utils : onErrorWeather :');
