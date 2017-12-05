@@ -78,11 +78,11 @@ class ScreenOne extends Sprite {
 	}
 	private function onMoveNext(e:MouseEvent):Void{
 		trace('onMoveNext');
-		/*
+		
 		var evt:Event = new Event(ScreenOne.TO_SCREEN_2_EVENT);
 		this.dispatchEvent(evt);
-		*/
-		getWeather();
+		
+		//getWeather();
 	}
 
 	//TODO: Get the weather Data
