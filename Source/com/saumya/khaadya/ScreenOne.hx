@@ -6,6 +6,12 @@ import openfl.geom.Point;
 import openfl.events.Event;
 import openfl.events.MouseEvent;
 
+import openfl.text.TextField;
+import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
+
+import openfl.Assets;
+
 import com.saumya.khaadya.Utils;
 
 
@@ -16,6 +22,8 @@ class ScreenOne extends Sprite {
 	private var screenWidth:Float;
 	private var screenHeight:Float;
 	private var screenCenter:Point;
+	//
+	private var tTemperature:TextField;
 
 	public function new(scWidth:Float, scHeight:Float) {
 		trace('ScreenOne : new :');
@@ -32,6 +40,26 @@ class ScreenOne extends Sprite {
 	}
 	private function construct():Void{
 		Utils.eDispatcher.addEventListener(Utils.WEATHER_DATA_EVENT,onGotWeatherData);
+		//
+		var font = Assets.getFont ("fonts/Komika_Parch.ttf");
+		var defaultFormat = new TextFormat (font.fontName, 20, 0x000000);
+		//defaultFormat.align = TextFormatAlign.RIGHT;
+		defaultFormat.align = TextFormatAlign.LEFT;
+
+		tTemperature = new TextField();
+		
+		tTemperature.x = 2;
+		tTemperature.y = 2;
+		tTemperature.width = 320;
+		tTemperature.selectable = false;
+		tTemperature.defaultTextFormat = defaultFormat;
+		
+		//tTemperature.filters = [ new BlurFilter (1.5, 1.5), new DropShadowFilter (1, 45, 0, 0.2, 5, 5) ];
+		
+		tTemperature.embedFonts = true;
+		addChild (tTemperature);
+		tTemperature.text = "!";
+		//
 		makeFromSWF();
 	}
 	private function makeFromSWF():Void{
@@ -61,6 +89,7 @@ class ScreenOne extends Sprite {
 	private function getWeather():Void{
 
 		Utils.getWeather();
+		tTemperature.text = "Wait . .";
 	}
 
 	private function onGotWeatherData(e:Event):Void
@@ -74,6 +103,8 @@ class ScreenOne extends Sprite {
 		//
 		//var time_sunrise = Utils.weatherData.sys.sunrise * 1000;
 		//var time_sunset = Utils.weatherData.sys.sunset * 1000;
+
+		tTemperature.text = ''+temp+'ºC'+' | Min-'+temp_min+' | Max-'+temp_max;
 
 
 		trace(temp_min+' : '+temp+' : '+temp_max);
