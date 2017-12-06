@@ -109,9 +109,10 @@ class ScreenOne extends Sprite {
 		hudWeather.setPressure( Utils.weatherData.main.pressure, Utils.weatherData.main.humidity );
 		
 		var weather = Utils.weatherData.weather[0];
-		hudWeather.setDescription(weather.description);
-		
-		hudWeather.setCity( Utils.weatherData.name );
+		hudWeather.setDescription(weather.main, weather.description);
+
+		//var country = Utils.weatherData.sys.country
+		hudWeather.setCity( Utils.weatherData.name, Utils.weatherData.sys.country );
 
 		//
 		//var time_sunrise = Utils.weatherData.sys.sunrise * 1000;

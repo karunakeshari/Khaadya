@@ -70,15 +70,15 @@ class HUDWeather extends Sprite {
 	}
 	public function setPressure( iPressure:Int, iHumidity:Int ):Void
 	{
-		tPressure.text = 'Pressure - '+iPressure+' | Humidity - '+iHumidity;
+		tPressure.text = 'Pressure - '+iPressure+'hPa | Humidity - '+iHumidity+'%';
 	}
-	public function setDescription(sMessage:String):Void
+	public function setDescription(sMessageMain:String, sMessageDescription:String):Void
 	{
-		tDescription.text = 'Weather type - '+sMessage;
+		tDescription.text = 'Weather type - '+sMessageMain+' | '+sMessageDescription;
 	}
-	public function setCity(cityName:String):Void
+	public function setCity(cityName:String, countryName:String):Void
 	{
-		tCity.text = 'City - '+cityName;
+		tCity.text = 'City - '+cityName+', '+countryName;
 	}
 	// Utility methods
 	private function moveTo(dObj:DisplayObject, newX:Float, newY:Float):Void
