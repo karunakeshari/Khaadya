@@ -12,6 +12,7 @@ import openfl.text.TextFormatAlign;
 
 import openfl.Assets;
 
+import com.saumya.khaadya.ui.HUDWeather;
 import com.saumya.khaadya.Utils;
 
 
@@ -23,7 +24,8 @@ class ScreenOne extends Sprite {
 	private var screenHeight:Float;
 	private var screenCenter:Point;
 	//
-	private var tTemperature:TextField;
+	//private var tTemperature:TextField;
+	private var hudWeather:HUDWeather;
 
 	public function new(scWidth:Float, scHeight:Float) {
 		trace('ScreenOne : new :');
@@ -41,9 +43,9 @@ class ScreenOne extends Sprite {
 	private function construct():Void{
 		Utils.eDispatcher.addEventListener(Utils.WEATHER_DATA_EVENT,onGotWeatherData);
 		//
+		/*
 		var font = Assets.getFont ("fonts/Komika_Parch.ttf");
 		var defaultFormat = new TextFormat (font.fontName, 20, 0x000000);
-		//defaultFormat.align = TextFormatAlign.RIGHT;
 		defaultFormat.align = TextFormatAlign.LEFT;
 
 		tTemperature = new TextField();
@@ -52,13 +54,16 @@ class ScreenOne extends Sprite {
 		tTemperature.y = 2;
 		tTemperature.width = 320;
 		tTemperature.selectable = false;
-		tTemperature.defaultTextFormat = defaultFormat;
+		//tTemperature.defaultTextFormat = defaultFormat;
 		
 		//tTemperature.filters = [ new BlurFilter (1.5, 1.5), new DropShadowFilter (1, 45, 0, 0.2, 5, 5) ];
 		
 		tTemperature.embedFonts = true;
 		addChild (tTemperature);
 		tTemperature.text = "!";
+		*/
+		this.hudWeather = new HUDWeather();
+		addChild(hudWeather);
 		//
 		makeFromSWF();
 	}
@@ -77,37 +82,45 @@ class ScreenOne extends Sprite {
 		//
 	}
 	private function onMoveNext(e:MouseEvent):Void{
-		trace('onMoveNext');
-		
+		//trace('onMoveNext');
+		/*
 		var evt:Event = new Event(ScreenOne.TO_SCREEN_2_EVENT);
 		this.dispatchEvent(evt);
-		
-		//getWeather();
+		*/
+		getWeather();
 	}
 
-	//TODO: Get the weather Data
 	private function getWeather():Void{
-
 		Utils.getWeather();
-		tTemperature.text = "Wait . .";
 	}
 
 	private function onGotWeatherData(e:Event):Void
 	{
 		trace('ScreenOne : onGotWeatherData : ');
 		var weatherData = Utils.weatherData;
+		trace(Utils.weatherData);
 		//
 		var temp = Utils.weatherData.main.temp;
 		var temp_min = Utils.weatherData.main.temp_min;
 		var temp_max = Utils.weatherData.main.temp_max;
 		//
+		hudWeather.setTemparature(temp,temp_min,temp_max);
+		hudWeather.setSunTime( Utils.weatherData.sys.sunrise * 1000, Utils.weatherData.sys.sunset * 1000 );
+		hudWeather.setPressure( Utils.weatherData.main.pressure, Utils.weatherData.main.humidity );
+		
+		var weather = Utils.weatherData.weather[0];
+		hudWeather.setDescription(weather.description);
+		
+		hudWeather.setCity( Utils.weatherData.name );
+
+		//
 		//var time_sunrise = Utils.weatherData.sys.sunrise * 1000;
 		//var time_sunset = Utils.weatherData.sys.sunset * 1000;
 
-		tTemperature.text = ''+temp+'ºC'+' | Min-'+temp_min+' | Max-'+temp_max;
+		//tTemperature.text = 'temperature-'+temp+'ºC'+' | Min-'+temp_min+'ºC | Max-'+temp_max+'ºC';
 
 
-		trace(temp_min+' : '+temp+' : '+temp_max);
+		//trace(temp_min+' : '+temp+' : '+temp_max);
 	}
 
 
