@@ -28,6 +28,7 @@ class Utils {
 	
 	public static var WEATHER_DATA_EVENT:String = "gotWeatherDataEvent";
 	public static var weatherData:Dynamic = {};
+	//
 	public static var eDispatcher:EventDispatcher = new EventDispatcher();
 
 	public function new() {
