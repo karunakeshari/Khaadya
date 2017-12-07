@@ -64,8 +64,8 @@ class ScreenOne extends Sprite {
 		*/
 		this.hudWeather = new HUDWeather();
 		hudWeather.visible = false;
-		addChild(hudWeather);
 		hudWeather.x = hudWeather.y = 10;
+		addChild(hudWeather);
 		//
 		makeFromSWF();
 	}
