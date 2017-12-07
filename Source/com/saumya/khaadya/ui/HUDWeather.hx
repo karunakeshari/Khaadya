@@ -1,6 +1,7 @@
 //
 package com.saumya.khaadya.ui;
 
+import openfl.display.Graphics;
 import openfl.display.DisplayObject;
 import openfl.display.Sprite;
 
@@ -31,6 +32,11 @@ class HUDWeather extends Sprite {
 	}
 	private function construct():Void
 	{
+		var bgScreen:Graphics = this.graphics;
+		bgScreen.beginFill(0xFFFF00,1.0);
+		bgScreen.drawRect(0,0,300,80);
+		bgScreen.endFill();
+		//
 		var font = Assets.getFont ("fonts/Komika_Parch.ttf");
 		
 		tfDefault = new TextFormat (font.fontName, 20, 0x000000);
@@ -89,7 +95,7 @@ class HUDWeather extends Sprite {
 	private function getTextField():TextField
 	{
 		var t:TextField = new TextField();
-		t.width = 320;
+		t.width = 280;
 		t.selectable = false;
 		//t.defaultTextFormat = tfDefault;
 		//t.filters = [ new BlurFilter (1.5, 1.5), new DropShadowFilter (1, 45, 0, 0.2, 5, 5) ];

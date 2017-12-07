@@ -63,7 +63,9 @@ class ScreenOne extends Sprite {
 		tTemperature.text = "!";
 		*/
 		this.hudWeather = new HUDWeather();
+		hudWeather.visible = false;
 		addChild(hudWeather);
+		hudWeather.x = hudWeather.y = 10;
 		//
 		makeFromSWF();
 	}
@@ -80,14 +82,15 @@ class ScreenOne extends Sprite {
 		//
 		btnOne.addEventListener(MouseEvent.CLICK,onMoveNext);
 		//
+		getWeather();
 	}
 	private function onMoveNext(e:MouseEvent):Void{
 		//trace('onMoveNext');
-		/*
+		
 		var evt:Event = new Event(ScreenOne.TO_SCREEN_2_EVENT);
 		this.dispatchEvent(evt);
-		*/
-		getWeather();
+		
+		//getWeather();
 	}
 
 	private function getWeather():Void{
@@ -97,6 +100,8 @@ class ScreenOne extends Sprite {
 	private function onGotWeatherData(e:Event):Void
 	{
 		trace('ScreenOne : onGotWeatherData : ');
+		hudWeather.visible = true;
+
 		var weatherData = Utils.weatherData;
 		trace(Utils.weatherData);
 		//

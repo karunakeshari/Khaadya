@@ -25,6 +25,8 @@ Load the `SWF` programmatically as
  - Multi-player
  - Leaderboard
 
+ - Weather Widget fixing
+
 
 
 
