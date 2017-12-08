@@ -9,6 +9,9 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
+import openfl.events.Event;
+import openfl.events.MouseEvent;
+
 import openfl.Assets;
 
 
@@ -28,6 +31,7 @@ class HUDWeather extends Sprite {
 	}
 	private function initialize():Void
 	{
+		this.addEventListener(MouseEvent.CLICK,onClickOnThis);
 		construct();
 	}
 	private function construct():Void
@@ -60,6 +64,10 @@ class HUDWeather extends Sprite {
 		this.addChild(tPressure);
 		this.addChild(tDescription);
 		addChild(tCity);
+	}
+	private function onClickOnThis(e:Event):Void
+	{
+		this.visible = false;
 	}
 	//pulic API
 	public function setTemparature ( tempNow:Float, minTemp:Float, maxTemp:Float ) : Void
